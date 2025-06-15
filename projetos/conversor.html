@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Conversor de Temperatura</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #121212; color: #fff; text-align: center; padding: 50px; }
+    input, select, button { padding: 10px; margin: 10px; }
+    .container { background: #1f1f1f; padding: 30px; border-radius: 10px; display: inline-block; }
+  </style>
+</head>
+<body>
+
+  <h1>Conversor de Temperatura</h1>
+
+  <div class="container">
+    <input type="number" id="valor" placeholder="Digite a temperatura">
+    <select id="escala">
+      <option value="C">Celsius</option>
+      <option value="F">Fahrenheit</option>
+      <option value="K">Kelvin</option>
+    </select>
+    <button onclick="converter()">Converter</button>
+
+    <div id="resultado"></div>
+  </div>
+
+  <script>
+    function converter() {
+      const valor = parseFloat(document.getElementById('valor').value);
+      const escala = document.getElementById('escala').value;
+      let resultado = '';
+
+      if (escala === 'C') {
+        resultado += `Fahrenheit: ${(valor * 9/5 + 32).toFixed(2)} °F<br>`;
+        resultado += `Kelvin: ${(valor + 273.15).toFixed(2)} K`;
+      } else if (escala === 'F') {
+        resultado += `Celsius: ${((valor - 32) * 5/9).toFixed(2)} °C<br>`;
+        resultado += `Kelvin: ${(((valor - 32) * 5/9) + 273.15).toFixed(2)} K`;
+      } else if (escala === 'K') {
+        resultado += `Celsius: ${(valor - 273.15).toFixed(2)} °C<br>`;
+        resultado += `Fahrenheit: ${(((valor - 273.15) * 9/5) + 32).toFixed(2)} °F`;
+      }
+
+      document.getElementById('resultado').innerHTML = resultado;
+    }
+  </script>
+
+</body>
+</html>

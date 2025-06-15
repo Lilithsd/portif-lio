@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Calculadora de IMC</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #121212; color: #fff; text-align: center; padding: 50px; }
+    input, button { padding: 10px; margin: 10px; }
+    .container { background: #1f1f1f; padding: 30px; border-radius: 10px; display: inline-block; }
+  </style>
+</head>
+<body>
+
+  <h1>Calculadora de IMC</h1>
+
+  <div class="container">
+    <input type="number" id="peso" placeholder="Peso (kg)">
+    <input type="number" id="altura" placeholder="Altura (m)">
+    <button onclick="calcular()">Calcular</button>
+
+    <div id="resultado"></div>
+  </div>
+
+  <script>
+    function calcular() {
+      const peso = parseFloat(document.getElementById('peso').value);
+      const altura = parseFloat(document.getElementById('altura').value);
+      const imc = peso / (altura * altura);
+      let classificacao = '';
+
+      if (imc < 18.5) classificacao = 'Abaixo do peso';
+      else if (imc < 25) classificacao = 'Peso normal';
+      else if (imc < 30) classificacao = 'Sobrepeso';
+      else classificacao = 'Obesidade';
+
+      document.getElementById('resultado').innerHTML = `IMC: ${imc.toFixed(2)} - ${classificacao}`;
+    }
+  </script>
+
+</body>
+</html>

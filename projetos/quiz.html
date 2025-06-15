@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Quiz Interativo</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #121212; color: #fff; text-align: center; padding: 50px; }
+    .container { background: #1f1f1f; padding: 30px; border-radius: 10px; display: inline-block; }
+    button { padding: 10px; margin: 5px; width: 100%; }
+  </style>
+</head>
+<body>
+
+  <h1>Quiz Interativo</h1>
+
+  <div class="container" id="quiz">
+    <p id="pergunta"></p>
+    <div id="opcoes"></div>
+  </div>
+
+  <script>
+    const perguntas = [
+      { pergunta: 'Qual a capital do Brasil?', opcoes: ['Brasília', 'São Paulo', 'Rio de Janeiro'], resposta: 0 },
+      { pergunta: 'Quanto é 5 x 6?', opcoes: ['30', '56', '25'], resposta: 0 },
+      { pergunta: 'Cor do céu?', opcoes: ['Verde', 'Azul', 'Preto'], resposta: 1 }
+    ];
+
+    let atual = 0, acertos = 0;
+
+    function carregarPergunta() {
+      if (atual >= perguntas.length) {
+        document.getElementById('quiz').innerHTML = `<h2>Você acertou ${acertos} de ${perguntas.length}!</h2>`;
+        return;
+      }
+      const p = perguntas[atual];
+      document.getElementById('pergunta').textContent = p.pergunta;
+      const opcoesDiv = document.getElementById('opcoes');
+      opcoesDiv.innerHTML = '';
+      p.opcoes.forEach((op, i) => {
+        const btn = document.createElement('button');
+        btn.textContent = op;
+        btn.onclick = () => escolher(i);
+        opcoesDiv.appendChild(btn);
+      });
+    }
+
+    function escolher(i) {
+      if (i === perguntas[atual].resposta) acertos++;
+      atual++;
+      carregarPergunta();
+    }
+
+    carregarPergunta();
+  </script>
+
+</body>
+</html>

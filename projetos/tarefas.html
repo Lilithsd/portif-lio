@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Lista de Tarefas</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #121212; color: #fff; text-align: center; padding: 50px; }
+    input, button { padding: 10px; margin: 10px; }
+    ul { list-style: none; padding: 0; }
+    li { background: #1f1f1f; padding: 10px; margin: 5px 0; border-radius: 5px; cursor: pointer; }
+    li.concluida { text-decoration: line-through; color: #999; }
+  </style>
+</head>
+<body>
+
+  <h1>Lista de Tarefas</h1>
+
+  <input type="text" id="tarefa" placeholder="Digite uma tarefa">
+  <button onclick="adicionar()">Adicionar</button>
+
+  <ul id="lista"></ul>
+
+  <script>
+    function adicionar() {
+      const texto = document.getElementById('tarefa').value;
+      if (texto.trim() === '') return;
+
+      const li = document.createElement('li');
+      li.textContent = texto;
+      li.onclick = () => li.classList.toggle('concluida');
+      document.getElementById('lista').appendChild(li);
+      document.getElementById('tarefa').value = '';
+    }
+  </script>
+
+</body>
+</html>
